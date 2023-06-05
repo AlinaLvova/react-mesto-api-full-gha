@@ -1,0 +1,19 @@
+.header__auth {
+    margin: 6px 0 0;
+    padding: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-decoration: none;
+    color: #fff;
+}
+
+
+@media screen and (max-width:550px) and (min-width:400px){
+    .header__auth {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

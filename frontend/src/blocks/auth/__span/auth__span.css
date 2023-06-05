@@ -1,0 +1,13 @@
+.auth__span {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #CCCCCC;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+}

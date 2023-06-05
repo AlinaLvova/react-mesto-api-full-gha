@@ -1,0 +1,19 @@
+.header__menu-btn{
+    padding: 0;
+    margin: 0;
+    width: 24px;
+    height: 21px;
+    background-image: url(./../../../images/menu-button.png);
+    background-position: center center;
+    background-color: transparent;
+    border: none;
+    background-size: cover;
+    cursor: pointer;
+}
+
+@media screen and (max-width:400px) {
+    .header__menu-btn{
+        width: 20px;
+        height: 20px;
+    }
+}

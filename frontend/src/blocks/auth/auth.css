@@ -1,0 +1,20 @@
+.auth{
+    margin: 60px auto 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 358px;
+    height: 461px;
+}
+
+@media screen and (max-width:880px) {
+    .auth {
+        max-width: 260px;
+        max-height: 380px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .auth {
+        max-height: 360px;
+    }
+}

@@ -1,0 +1,6 @@
+.auth__input{
+    width: 100%;
+    height: 27px;
+    outline: none !important;
+    border-bottom: 2px solid #CCCCCC !important;
+}
