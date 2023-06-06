@@ -3,7 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const errors = require('./middlewares/errors');
-const DB_ADDRESS = require('./utils/config');
+const { DB_ADDRESS } = require('./utils/config');
 
 // подключаемся к серверу mongo
 mongoose
