@@ -114,15 +114,16 @@ module.exports.login = (req, res, next) => {
     .orFail()
     .then((user) => bcrypt.compare(password, user.password).then((match) => {
       if (match) {
-        const token = jwt.sign({ _id: user._id }, config.jwtSecretKey, {
+        const token = jwt.sign({ _id: user._id }, config.JWT_SECRET_KEY, {
           expiresIn: '7d',
         });
         // Устанавливаем httpOnly куку
-        res.cookie('jwtToken', token, {
-          maxAge: 3600,
-          httpOnly: true,
-        });
-        return res.send({ jwtToken: token });
+        // res.cookie('jwtToken', token, {
+        //   maxAge: 3600,
+        //   httpOnly: true,
+        // });
+        // return res.send({ jwtToken: token });
+        res.status(SUCCESS_STATUS).send({ jwt: token });
       }
       throw new UnauthorizedError('Переданы неверные email или пароль');
     }))
