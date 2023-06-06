@@ -12,13 +12,13 @@ mongoose
     useUnifiedTopology: true,
     // useCreateIndex: true,
     // useFindAndModify: false
-  })
-  .then(() => {
-    process.stdout.write('Успешное подключение к базе данных');
-  })
-  .catch((error) => {
-    process.stdout.write('Ошибка при подключении к базе данных:', error);
   });
+// .then(() => {
+//   process.stdout.write('Успешное подключение к базе данных');
+// })
+// .catch((error) => {
+//   process.stdout.write('Ошибка при подключении к базе данных:', error);
+// });
 
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
