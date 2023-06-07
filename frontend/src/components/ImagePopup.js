@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {React, useState} from 'react';
 import image_404 from './../images/404.webp';
 import usePopupClose from "./../hooks/usePopupClose";
 

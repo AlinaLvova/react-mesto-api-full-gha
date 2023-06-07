@@ -1,9 +1,8 @@
-import {useContext} from 'react';
+import { useContext, React} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Card from './Card';
 import { CurrentUserContext } from './../contexts/CurrentUserContext';
 import InfoTooltip from "./InfoTooltip";
-import React from 'react';
 
 function Main(props) {
   const currentUser = useContext(CurrentUserContext);

@@ -1,4 +1,5 @@
 import AuthenticationForm from "./AuthenticationForm";
+import React from 'react';
 
 export default function Register(props) {
     return (
