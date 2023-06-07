@@ -11,7 +11,7 @@ dist
 /coverage
 
 # production
-/build
+frontend/build
 
 # Logs
 logs
