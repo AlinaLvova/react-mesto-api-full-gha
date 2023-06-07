@@ -1,6 +1,7 @@
 import usePopupClose from "./../hooks/usePopupClose";
 import failedIcon from "./../images/failed.png";
 import successIcon from "./../images/success.png";
+import React from 'react';
 
 function InfoTooltip(props) {
   const failedTitle = "Что-то пошло не так! Попробуйте ещё раз.";
