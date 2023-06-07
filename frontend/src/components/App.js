@@ -88,11 +88,11 @@ function App() {
     }, 1000);
   };
 
-  const isOpen =
-    isUpdateAvatarPopupOpen ||
-    isEditProfilePopupOpen ||
-    isAddCardPopupOpen ||
-    selectedCard.link;
+  // const isOpen =
+  //   isUpdateAvatarPopupOpen ||
+  //   isEditProfilePopupOpen ||
+  //   isAddCardPopupOpen ||
+  //   selectedCard.link;
 
   // useEffect(() => {
   //   function closeByEscape(evt) {
