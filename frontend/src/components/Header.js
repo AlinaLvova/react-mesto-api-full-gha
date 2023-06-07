@@ -1,6 +1,7 @@
 import logo from "../images/logo.svg";
-import { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import React from 'react';
 
 function Header(props) {
   const [width, setWidth] = useState(window.innerWidth);
