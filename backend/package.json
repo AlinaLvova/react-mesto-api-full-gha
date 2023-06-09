@@ -22,7 +22,6 @@
   "bugs": {
     "url": "https://github.com/AlinaLvova/express-mesto-gha/issues"
   },
-  "homepage": "https://github.com/AlinaLvova/express-mesto-gha",
   "devDependencies": {
     "eslint": "^8.40.0",
     "eslint-config-airbnb-base": "^15.0.0",
