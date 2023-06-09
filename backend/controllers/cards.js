@@ -35,11 +35,7 @@ const formatCard = (card) => ({
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ title: name, link, owner: req.user._id })
-    .then((card) => res.status(CREATED_STATUS).send({
-      name: card.title,
-      link: card.link,
-      _id: card._id,
-    }))
+    .then((card) => res.status(CREATED_STATUS).send(formatCard(card)))
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         return next(new BadRequestError('Переданы некорректные данные при создании карточки.'));
