@@ -1,10 +1,9 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
+// export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = "http://localhost:3000";
 
 export class Auth{
 
-  constructor(config){
-
-  }
+  // constructor(config){}
 
   handleError(error) {
     if (error.message){
@@ -70,7 +69,7 @@ export class Auth{
       }
     });
     
-    return this._handleResponse(response, "Данные токена не были успешно обработаны сервером", ' Токен не передан или передан не в том формате', 'Переданный токен некорректен');
+    return this._handleResponse(response, "Данные токена не были успешно обработаны сервером", 'Токен не передан или передан не в том формате', 'Переданный токен некорректен');
   }
 
 }
