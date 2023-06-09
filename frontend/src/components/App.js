@@ -30,7 +30,11 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
-    api
+  }, []);
+
+  useEffect(() => {
+    if(loggedIn)
+    {api
       .getCardList()
       .then((cardListData) => {
         setCards(cardListData);
@@ -47,21 +51,22 @@ function App() {
       .catch((error) => {
         console.log(error.message);
       });
-  }, []);
+    }
+  }, [loggedIn]);
 
   async function handleTokenCheck() {
     const token = localStorage.getItem("token");
 
     if (!token) navigate("/sign-in", { replace: true });
     else {
-      try{
-      const data = await auth.checkUserSession(token);
-      setLoggedIn(true);
-      setUserData({ email: data.data.email });
-      navigate("/mesto", { replace: true });
-      }
-      catch(error){
-        console.log('Error:', error);
+      try {
+        const data = await auth.checkUserSession(token);
+        setUserData({ email: data.email });
+        navigate("/mesto", { replace: true });
+        setLoggedIn(true);
+      } catch (error) {
+        localStorage.clear("token");
+        console.log("Error:", error);
       }
     }
   }
@@ -191,6 +196,27 @@ function App() {
     localStorage.clear("token");
     navigate("/sign-in", { replace: true });
   };
+
+  // useEffect(() => {
+  //   if (loggedIn) {
+  //     Promise.all([api.getUserInfo(), api.getCardList()])
+  //       .then(([userInfo, dataCards]) => {
+  //         setCurrentUser(userInfo);
+  //         setCards(
+  //           dataCards.reverse().map((item) => ({
+  //             _id: item._id,
+  //             name: item.name,
+  //             link: item.link,
+  //             likes: item.likes,
+  //             owner: item.owner,
+  //           }))
+  //         );
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }, [loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
