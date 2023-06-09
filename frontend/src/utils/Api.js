@@ -2,6 +2,7 @@ class Api{
     constructor(config){
         this.baseUrl = config.baseUrl;
         this.headers = config.headers;
+        this.token = config.token;
     }
 
     // функция обработки результата ответа сервера
@@ -14,7 +15,10 @@ class Api{
 
     sentCard({name, link}){
         return fetch(`${this.baseUrl}/cards`, {
-            headers: this.headers,
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+              },
             method: 'POST',
             body: JSON.stringify({
                 name: name,
@@ -29,7 +33,10 @@ class Api{
     //обновление данных о пользователе на сервере
     updateUserInfo(name, about){
         return fetch(`${this.baseUrl}/users/me`, {
-            headers: this.headers,
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+              },
             method: 'PATCH',
             body: JSON.stringify({
                 name: name,
@@ -44,7 +51,10 @@ class Api{
     //обновить аватар
     updateAvatar(avatar){
         return fetch(`${this.baseUrl}/users/me/avatar`, {
-            headers: this.headers,
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+              },
             method: 'PATCH',
             body: JSON.stringify({
                 avatar: avatar
@@ -58,7 +68,10 @@ class Api{
     //получить информацию о пользователе
     getUserInfo(){
         return fetch(`${this.baseUrl}/users/me`, {
-            headers: this.headers,
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('token')}`, 
+                'Content-Type': 'application/json'
+              },
             method: 'GET'
         })
         .then((response) => {
@@ -77,7 +90,10 @@ class Api{
     //поставить лайк карточке
     setLike(cardId){
         return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
-            headers: this.headers,
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('token')}`,  
+                'Content-Type': 'application/json'
+              },
             method: 'PUT'
         })
         .then((response) => {
@@ -88,7 +104,10 @@ class Api{
     //убрать лайк с карточки
     deleteLike(cardId){
         return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
-            headers: this.headers,
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('token')}`,  
+                'Content-Type': 'application/json'
+              },
             method: 'DELETE'
         })
         .then((response) => {
@@ -99,7 +118,10 @@ class Api{
     //удалить карточку по id
     deleteCard(cardId){
         return fetch(`${this.baseUrl}/cards/${cardId}`, {
-            headers: this.headers,
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('token')}`,  
+                'Content-Type': 'application/json'
+              },
             method: 'DELETE'
         })
         .then((response) => {
@@ -110,7 +132,10 @@ class Api{
     //получить список карточек
     getCardList() {
         return fetch(`${this.baseUrl}/cards`, {
-            headers: this.headers,
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('token')}`,  
+                'Content-Type': 'application/json'
+              },
             method: 'GET'
         })
         .then((response) => {
@@ -120,9 +145,11 @@ class Api{
 }   
 
 const apiConfig = {
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-60',
+    // baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-60',
+    baseUrl: 'http://localhost:3000',
+    token: `Bearer ${localStorage.getItem('token')}`,
     headers: {
-      'Authorization': '615ec7c0-c05d-4e3c-8fba-c9ef3b1c5572',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
       'Content-Type': 'application/json'
     }
   }

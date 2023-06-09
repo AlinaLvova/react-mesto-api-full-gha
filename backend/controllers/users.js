@@ -123,9 +123,10 @@ module.exports.login = (req, res, next) => {
         //   httpOnly: true,
         // });
         // return res.send({ jwtToken: token });
-        res.status(SUCCESS_STATUS).send({ jwt: token });
+        res.send({ token });
+      } else {
+        throw new UnauthorizedError('Переданы неверные email или пароль');
       }
-      throw new UnauthorizedError('Переданы неверные email или пароль');
     }))
     .catch((err) => {
       if (err instanceof mongoose.Error.DocumentNotFoundError) {
