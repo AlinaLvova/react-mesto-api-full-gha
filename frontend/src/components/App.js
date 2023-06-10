@@ -34,18 +34,10 @@ function App() {
 
   useEffect(() => {
     if(loggedIn)
-    {api
-      .getCardList()
-      .then((cardListData) => {
+    {
+      Promise.all([api.getCardList(), api.getUserInfo()])
+      .then(([cardListData, infoData]) => {
         setCards(cardListData);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-
-    api
-      .getUserInfo()
-      .then((infoData) => {
         setCurrentUser(infoData);
       })
       .catch((error) => {
