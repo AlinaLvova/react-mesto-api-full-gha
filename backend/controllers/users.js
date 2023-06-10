@@ -62,7 +62,7 @@ const findUserById = (source) => (req, res, next) => {
     .orFail()
     .then((user) => {
       req.user = user;
-      next();
+      return res.status(SUCCESS_STATUS).send(formatUserData(req.user));
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.CastError) {
@@ -102,14 +102,6 @@ const findUserById = (source) => (req, res, next) => {
 
 module.exports.getUserById = findUserById('params');
 module.exports.getMe = findUserById('user');
-
-module.exports.getUserById = (req, res) => {
-  res.status(SUCCESS_STATUS).send(formatUserData(req.user));
-};
-
-module.exports.getMe = (req, res) => {
-  res.status(SUCCESS_STATUS).send(formatUserData(req.user));
-};
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
