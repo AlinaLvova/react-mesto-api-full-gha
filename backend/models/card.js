@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const cardSchema = new mongoose.Schema({
   title: { // название карточки
@@ -10,6 +11,10 @@ const cardSchema = new mongoose.Schema({
   link: { // ссылка на картинку
     required: true,
     type: String,
+    validate: {
+      validator: (URL) => validator.isURL(URL),
+      message: 'Некорректный адрес',
+    },
   },
   owner: { // ссылка на модель автора карточки
     type: mongoose.Schema.Types.ObjectId,
