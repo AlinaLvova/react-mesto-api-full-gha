@@ -35,6 +35,13 @@ app.use(cookieParser());
 
 app.use(cors);
 
+// удалить после прохождения ревью
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use(require('./routes/index'));
 
 app.use(errors);

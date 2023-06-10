@@ -12,13 +12,6 @@ const NotFoundError = require('../errors/notFoundError');
 
 const router = express.Router();
 
-// удалить после прохождения ревью
-router.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
-
 router.post('/signin', loginValidator, login);
 router.post('/signup', signupValidator, createUser);
 
