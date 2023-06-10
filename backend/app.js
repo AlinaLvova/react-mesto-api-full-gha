@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const cors = require('cors');
+const cors = require('./middlewares/cors');
 const errors = require('./middlewares/errors');
 const { DB_ADDRESS } = require('./utils/config');
 
@@ -26,8 +26,6 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-app.use(cors());
-
 // теперь клиент имеет доступ только к публичным файлам
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -35,6 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 app.use(cookieParser());
+
+app.use(cors);
 
 app.use(require('./routes/index'));
 
