@@ -145,7 +145,8 @@ class Api{
 }   
 
 const apiConfig = {
-    // baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-60',
+    // ЗДЕСЬ!
+    // baseUrl: 'http://localhost:3000',
     baseUrl: 'https://api.malina.nomoredomains.rocks',
     token: `Bearer ${localStorage.getItem('token')}`,
     headers: {

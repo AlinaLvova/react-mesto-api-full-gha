@@ -1,4 +1,5 @@
-// export const BASE_URL = "https://auth.nomoreparties.co";
+// ЗДЕСЬ!
+// export const BASE_URL = 'http://localhost:3000'
 export const BASE_URL = "https://api.malina.nomoredomains.rocks";
 
 export class Auth{
