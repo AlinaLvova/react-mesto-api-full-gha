@@ -32,20 +32,6 @@ function App() {
     handleTokenCheck();
   }, []);
 
-  useEffect(() => {
-    if(loggedIn)
-    {
-      Promise.all([api.getCardList(), api.getUserInfo()])
-      .then(([cardListData, infoData]) => {
-        setCards(cardListData);
-        setCurrentUser(infoData);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-    }
-  }, [loggedIn]);
-
   async function handleTokenCheck() {
     const token = localStorage.getItem("token");
 
@@ -189,26 +175,26 @@ function App() {
     navigate("/sign-in", { replace: true });
   };
 
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     Promise.all([api.getUserInfo(), api.getCardList()])
-  //       .then(([userInfo, dataCards]) => {
-  //         setCurrentUser(userInfo);
-  //         setCards(
-  //           dataCards.reverse().map((item) => ({
-  //             _id: item._id,
-  //             name: item.name,
-  //             link: item.link,
-  //             likes: item.likes,
-  //             owner: item.owner,
-  //           }))
-  //         );
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, [loggedIn]);
+  useEffect(() => {
+    if (loggedIn) {
+      Promise.all([api.getUserInfo(), api.getCardList()])
+        .then(([userInfo, dataCards]) => {
+          setCurrentUser(userInfo);
+          setCards(
+            dataCards.reverse().map((item) => ({
+              _id: item._id,
+              name: item.name,
+              link: item.link,
+              likes: item.likes,
+              owner: item.owner,
+            }))
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

@@ -55,15 +55,20 @@ module.exports.createUser = (req, res, next) => {
   });
 };
 
-module.exports.getUserById = (req, res, next) => {
-  User.findById(req.params.userId)
+const findUserById = (source) => (req, res, next) => {
+  const userId = source === 'params' ? req.params.userId : req.user._id;
+
+  User.findById(userId)
     .orFail()
     .then((user) => {
-      res.status(SUCCESS_STATUS).send(formatUserData(user));
+      req.user = user;
+      next();
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.CastError) {
-        return next(new BadRequestError('Пользователь по указанному _id не найден.'));
+        return next(
+          new BadRequestError('Пользователь по указанному _id не найден.'),
+        );
       }
       if (err instanceof mongoose.Error.DocumentNotFoundError) {
         return next(new NotFoundError('Пользователь с таким id не найден'));
@@ -72,15 +77,43 @@ module.exports.getUserById = (req, res, next) => {
     });
 };
 
+// module.exports.getUserById = (req, res, next) => {
+//   User.findById(req.params.userId)
+//     .orFail()
+//     .then((user) => {
+//       res.status(SUCCESS_STATUS).send(formatUserData(user));
+//     })
+//     .catch((err) => {
+//       if (err instanceof mongoose.Error.CastError) {
+//         return next(new BadRequestError('Пользователь по указанному _id не найден.'));
+//       }
+//       if (err instanceof mongoose.Error.DocumentNotFoundError) {
+//         return next(new NotFoundError('Пользователь с таким id не найден'));
+//       }
+//       return next(err);
+//     });
+// };
+
+// module.exports.getMe = (req, res, next) => {
+//   User.findById(req.user._id)
+//     .then((user) => res.status(SUCCESS_STATUS).send(formatUserData(user)))
+//     .catch((err) => next(err));
+// };
+
+module.exports.getUserById = findUserById('params');
+module.exports.getMe = findUserById('user');
+
+module.exports.getUserById = (req, res) => {
+  res.status(SUCCESS_STATUS).send(formatUserData(req.user));
+};
+
+module.exports.getMe = (req, res) => {
+  res.status(SUCCESS_STATUS).send(formatUserData(req.user));
+};
+
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.status(SUCCESS_STATUS).send(users.map((user) => formatUserData(user))))
-    .catch((err) => next(err));
-};
-
-module.exports.getMe = (req, res, next) => {
-  User.findById(req.user._id)
-    .then((user) => res.status(SUCCESS_STATUS).send(formatUserData(user)))
     .catch((err) => next(err));
 };
 
