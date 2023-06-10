@@ -9,8 +9,11 @@ const {
   signupValidator,
 } = require('../middlewares/validation');
 const NotFoundError = require('../errors/notFoundError');
+const { requestLogger, errorLogger } = require('../middlewares/logger');
 
 const router = express.Router();
+
+router.use(requestLogger); // логгер запросов
 
 router.post('/signin', loginValidator, login);
 router.post('/signup', signupValidator, createUser);
@@ -23,6 +26,8 @@ router.use('/cards', cardsRouter);
 // Middleware для обработки несуществующих путей
 router.use((req, res, next) => next(new NotFoundError('Маршрут не найден')));
 
-router.use(errors());
+router.use(errorLogger); // логгер ошибок
+
+router.use(errors()); // обработчик ошибок celebrate
 
 module.exports = router;

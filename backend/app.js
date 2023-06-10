@@ -44,7 +44,7 @@ app.get('/crash-test', () => {
 
 app.use(require('./routes/index'));
 
-app.use(errors);
+app.use(errors); // централизованный обработчик ошибок
 
 app.listen(PORT, () => {
 });
