@@ -4,7 +4,7 @@
 
 Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположите в директории `backend/`, а фронтенд - в `frontend/`.
   
-Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
+Cсылка на сайт, размещенный на Яндекс.Облаке: <https://malina.nomoredomains.rocks>
 
 Адрес репозитория: <https://github.com/AlinaLvova/react-mesto-api-full-gha>
 
@@ -12,6 +12,6 @@
 
 IP-адрес 51.250.20.120
 
-Frontend [Frontend-link](https://malina.nomoredomains.rocks)
+Frontend <https://malina.nomoredomains.rocks>
 
-Backend [Backend-link](https://api.malina.nomoredomains.rocks)
+Backend <https://api.malina.nomoredomains.rocks>
